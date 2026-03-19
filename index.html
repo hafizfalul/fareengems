@@ -1,87 +1,385 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3RDTRQKQVB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-3RDTRQKQVB');
+    </script>
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fareen Gems - Natural Blue Sapphires , Rubies and Alexandrites</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Fareen Gems | Premium Natural Colored Gemstones</title>
+    <meta name="description"
+        content="Fareen Gems specializes in premium natural colored gemstones including Alexandrite, Sapphire, Ruby, and Spinel. Serving jewelers, collectors, and traders with trust and excellence.">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Fareen Gems | Premium Natural Colored Gemstones">
+    <meta property="og:description"
+        content="Discover nature's finest colored gemstones selected for beauty, rarity, and value.">
+    <!-- [Replace OG Image Here] -->
+    <meta property="og:image" content="images/og-image-placeholder.jpg">
+    <meta property="og:url" content="https://fareengems.com">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon (Placeholder) -->
+    <link rel="icon" type="image/png" href="images/favicon-placeholder.png">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
-    <main class="min-h-screen">
-        <header class="header">
-            <img src="image/logo.jpg" alt="Fareen Gems Logo" class="header-logo">
-            <h1 class="header-title"></h1>
-            <p class="header-subtitle">"Ethically Sourced Natural Gemstone"</p>
-        </header>
 
-        <section class="company-info">
-            <div class="container">
-                <h2 class="section-title">Welcome to Fareen Gems,</h2>
-                <p class="company-description">
-                    your trusted source for Natural Alexandrite, Sapphires, and Rare Gemstones. 
-					We specialize in ethically sourced, precision-cut gemstones, offering collectors, investors, and jewelers the finest quality stones. 
-					Explore our exclusive collection and contact us for custom requests. Authenticity guaranteed!
-                </p>
-                <div class="info-grid">
-                    <div class="info-column">
-                        <h3 class="info-subtitle">Our Location</h3>
-                        <p class="info-text">
-                            29/2, Samagi Mawatha,  <br>
-                            Kawdana Road, Dehiwala<br>
-                            Sri Lanka
-                        </p>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 10px;">
+                <img src="images/logo.jpg" alt="Fareen Gems Logo" style="height: 80px; width: auto; max-height: 100px;">
+                <span style="color: var(--sapphire-blue);">Fareen</span><span
+                    style="color: var(--sapphire-blue);">Gems</span>
+            </a>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="gemstones.html" class="nav-link">Featured Gemstones</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+
+
+            </nav>
+
+            <i class="fas fa-bars mobile-menu-btn"></i>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- [Replace Hero Image Here] - Recommended: High quality image of a brilliant cut colored gemstone -->
+        <div class="hero-bg" style="background-image: url('images/hero-sapphire.jpg');"></div>
+        <div class="hero-content">
+            <span class="hero-subtitle">Premium Natural Colored Gemstones</span>
+            <h1 class="hero-title">Experience the True Brilliance of Nature</h1>
+            <p class="hero-desc">Selected for impeccable beauty, exceptional rarity, and enduring value. Sourcing the
+                world's finest unheated Sapphires, Rubies, Alexandrite, and rare stones for collectors, traders and
+                jewelers.</p>
+            <a href="gemstones.html" class="btn btn-primary" style="margin-right: 15px;">Explore Collection</a>
+            <a href="contact.html" class="btn btn-outline">Inquire Now</a>
+        </div>
+    </section>
+
+    <!-- Welcome Section -->
+    <section class="section bg-light">
+        <div class="container intro-grid">
+            <div class="intro-content">
+                <h2 class="section-title">Welcome to Fareen Gems</h2>
+                <h3
+                    style="color: var(--rich-gold); margin-bottom: 1.5rem; font-size: 1.1rem; text-transform: uppercase;">
+                    A Legacy of Trust & Brilliance</h3>
+                <p style="margin-bottom: 1.5rem; font-size: 1.05rem;">At Fareen Gems, we specialize in curating the
+                    finest natural colored gemstones from ethically sourced origins. We believe in the intrinsic power
+                    and beauty of a meticulously cut stone.</p>
+                <!-- [Replace Business Description Here if needed] -->
+                <p style="margin-bottom: 2rem;">Our dedication to authenticity ensures that every sapphire, ruby,
+                    spinel, and tourmaline within our collection meets rigorous standards. Serving serious gemstone
+                    buyers and discerning jewelers, we combine industry expertise with unwavering professional
+                    integrity.</p>
+                <a href="about.html" class="btn btn-dark">Discover Our Story</a>
+            </div>
+            <div class="intro-image">
+                <!-- [Replace Image Here] -->
+                <img src="images/welcome-gem-placeholder.jpg" alt="Beautiful faceted gemstone on dark background"
+                    style="width: 100%; height: 400px; object-fit: cover; background-color: #ddd;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section bg-white">
+        <div class="container text-center">
+            <h2 class="section-title">Why Choose Us</h2>
+            <p class="section-subtitle">Excellence and transparency at every step of your gemstone acquisition.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-gem feature-icon"></i>
+                    <h3 class="feature-title">Natural Gemstones</h3>
+                    <p>We source only 100% natural, earth-mined stones, focusing on unheated and untreated rarities.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-globe-americas feature-icon"></i>
+                    <h3 class="feature-title">Trusted Sourcing</h3>
+                    <p>Strategic partnerships with miners and cutters allow us to verify the origin and ethical tracing
+                        of our gems.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-microscope feature-icon"></i>
+                    <h3 class="feature-title">Quality Selection</h3>
+                    <p>Every stone is strictly inspected for structural integrity, clarity, color saturation, and
+                        brilliance.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-cut feature-icon"></i>
+                    <h3 class="feature-title">Precision Cutting</h3>
+                    <p>Master lapidaries ensure maximum light return, maximizing the beauty of the rough material.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Gemstones Preview -->
+    <section class="section bg-light">
+        <div class="container text-center">
+            <h2 class="section-title">Featured Gemstones</h2>
+            <p class="section-subtitle">A glimpse into our exclusive selection of rare, high-value colored stones.</p>
+
+            <div class="gem-grid" style="margin-bottom: 3rem;">
+                <!-- Gem Card 1 -->
+                <div class="gem-card">
+                    <div class="gem-img-wrapper">
+                        <div class="gem-badge">Royal</div>
+                        <!-- [Replace Gemstone Image Here] -->
+                        <img src="images/blue-sapphire-1-64.jpg" alt="Royal Blue Sapphire"
+                            style="background-color: #e0e0e0;">
                     </div>
-                    <div class="info-column">
-                        <h3 class="info-subtitle">Contact Us</h3>
-                        <p class="info-text">
-                            Phone: (94) 777-890-800<br>
-                            Email: info@fareengems.com<br>
-                            Hours: Mon-Sun 9AM-5PM
-                        </p>
+                    <div class="gem-content text-left">
+                        <h3 class="gem-title">Royal Blue Sapphire</h3>
+                        <p class="gem-desc">Exceptional royal blue saturation with eye clean clarity. Ideal for bespoke
+                            jewelry.</p>
+                        <div class="gem-specs">
+                            <div><strong>Weight</strong> 1.64 ct</div>
+                            <div><strong>Shape</strong> Cushion </div>
+                        </div>
+                        <a href="contact.html" class="btn btn-outline" style="width: 100%; text-align: center;">Inquire
+                            Now</a>
+                    </div>
+                </div>
+
+                <!-- Gem Card 2 -->
+                <div class="gem-card">
+                    <div class="gem-img-wrapper">
+                        <div class="gem-badge">Pair</div>
+                        <!-- [Replace Gemstone Image Here] -->
+                        <img src="images/white-sapphire-5-45.png" alt="mismatched Pair"
+                            style="background-color: #d0d0d0;">
+                    </div>
+                    <div class="gem-content text-left">
+                        <h3 class="gem-title">Mismatched Pair</h3>
+                        <p class="gem-desc">A mesmerizing pair of mismatched sapphires displaying a striking peach and
+                            light purple</p>
+                        <div class="gem-specs">
+                            <div><strong>Weight</strong> 5.45 ct</div>
+                            <div><strong>Shape</strong> Cushion</div>
+                        </div>
+                        <a href="contact.html" class="btn btn-outline" style="width: 100%; text-align: center;">Inquire
+                            Now</a>
+                    </div>
+                </div>
+
+                <!-- Gem Card 3 -->
+                <div class="gem-card">
+                    <div class="gem-img-wrapper">
+                        <div class="gem-badge">Aquamarine</div>
+                        <!-- [Replace Gemstone Image Here] -->
+                        <img src="images/aqwa-gia-20-06.jpg" alt="Aquamarine" style="background-color: #e5e5e5;">
+                    </div>
+                    <div class="gem-content text-left">
+                        <h3 class="gem-title">Aquamarine</h3>
+                        <p class="gem-desc">Exceptional vibrant Greenish Blue. GIA Certified.Flawless Gemstone.
+                        <div class="gem-specs">
+                            <div><strong>Weight</strong> 20.06 ct</div>
+                            <div><strong>Shape</strong>Oval Cut</div>
+                        </div>
+                        <a href="contact.html" class="btn btn-outline" style="width: 100%; text-align: center;">Inquire
+                            Now</a>
+                    </div>
+                </div>
+
+                <!-- Gem Card 4 -->
+                <div class="gem-card">
+                    <div class="gem-img-wrapper">
+                        <div class="gem-badge">Tsavorite</div>
+                        <!-- [Replace Gemstone Image Here] -->
+                        <img src="images/tsavorite-2-15.png" alt="Tsavorite" style="background-color: #eaeaea;">
+                    </div>
+                    <div class="gem-content text-left">
+                        <h3 class="gem-title">Tsavorite</h3>
+                        <p class="gem-desc">This remarkable tsavorite garnet showcasing an intense, vivid green color
+                            with exceptional brilliance and life.</p>
+                        <div class="gem-specs">
+                            <div><strong>Weight</strong> 2.15ct</div>
+                            <div><strong>Shape</strong> octagonal</div>
+                        </div>
+                        <a href="contact.html" class="btn btn-outline" style="width: 100%; text-align: center;">Inquire
+                            Now</a>
+                    </div>
+                </div>
+
+                <!-- Gem Card 5-->
+                <div class="gem-card">
+                    <div class="gem-img-wrapper">
+                        <div class="gem-badge">Alexandrite</div>
+                        <!-- [Replace Gemstone Image Here] -->
+                        <img src="images/alexandrite-3-10.jpg" alt="Alexandrite" style="background-color: #eaeaea;">
+                    </div>
+                    <div class="gem-content text-left">
+                        <h3 class="gem-title">Alexandrite</h3>
+                        <p class="gem-desc">The Perfect Chnage from green-yellow to orangy brown.Origin from Sri Lanka,
+                            Certified by GIA.</p>
+                        <div class="gem-specs">
+                            <div><strong>Weight</strong> 3.10 ct</div>
+                            <div><strong>Shape</strong> Cushion</div>
+                        </div>
+                        <a href="contact.html" class="btn btn-outline" style="width: 100%; text-align: center;">Inquire
+                            Now</a>
+                    </div>
+                </div>
+
+                <!-- Gem Card 6-->
+                <div class="gem-card">
+                    <div class="gem-img-wrapper">
+                        <div class="gem-badge">Collector</div>
+                        <!-- [Replace Gemstone Image Here] -->
+                        <img src="images/yellow-sapphire-3.05.png" alt="Yellow Sapphire"
+                            style="background-color: #eaeaea;">
+                    </div>
+                    <div class="gem-content text-left">
+                        <h3 class="gem-title">Yellow Sapphire</h3>
+                        <p class="gem-desc">A stunning yellow sapphire displaying a rich, vivid golden hue with
+                            exceptional brilliance and radiance.
+                        <div class="gem-specs">
+                            <div><strong>Weight</strong> 3.05 ct</div>
+                            <div><strong>Shape</strong> Pear cut</div>
+                        </div>
+                        <a href="contact.html" class="btn btn-outline" style="width: 100%; text-align: center;">Inquire
+                            Now</a>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <a href="gemstones.html" class="btn btn-dark">View Full Collection</a>
+        </div>
+    </section>
+
+    <!-- Trust Building Space -->
+    <section class="section trust-section">
+        <div class="container">
+            <h2 class="section-title">Serving the Finest in the Industry</h2>
+            <p style="max-width: 800px; margin: 0 auto 2rem; font-size: 1.1rem; color: var(--silver);">
+                Whether you are a bespoke jeweler requiring calibrated perfection, an Gem Trader seeking unheated
+                sanctuary stones, or a collector chasing the rarest phenomenological gems – Fareen Gems offers
+                unparalleled expertise, discretion, and market insight.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin-top: 3rem;">
+                <div>
+                    <h4
+                        style="font-size: 2rem; color: var(--rich-gold); margin-bottom: 0.5rem; font-family: var(--font-body);">
+                        100%</h4>
+                    <p style="text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;">Natural Stones</p>
+                </div>
+                <div>
+                    <h4
+                        style="font-size: 2rem; color: var(--rich-gold); margin-bottom: 0.5rem; font-family: var(--font-body);">
+                        Bespoke</h4>
+                    <p style="text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;">Sourcing Services</p>
+                </div>
+                <div>
+                    <h4
+                        style="font-size: 2rem; color: var(--rich-gold); margin-bottom: 0.5rem; font-family: var(--font-body);">
+                        Certified</h4>
+                    <p style="text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;">Lab Reports Included
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call To Action -->
+    <section class="section"
+        style="background: linear-gradient(rgba(26,26,26,0.9), rgba(26,26,26,0.9)), url('images/cta-bg-placeholder.jpg') center/cover; color: var(--white); text-align: center;">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--white);">Looking for a Specific Gemstone?</h2>
+            <p class="section-subtitle" style="color: var(--silver); margin-bottom: 2rem;">Contact our experts to
+                discover exclusive off-market stones or specify your exact sourcing requirements.</p>
+            <a href="contact.html" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 40px;">Speak With Us
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="index.html" class="logo"><span> Fareen Gems</span></a>
+                    <p style="margin-top: 1rem; font-size: 0.95rem;">Premium natural colored gemstones specializing in
+                        Alexandrite, Sapphires, Rubies, and rare collection stones designed for traders, collectors,
+                        and jewelers.</p>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gemstones.html">Featured Gemstones</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-links" style="font-size: 0.95rem;">
+                        <!-- [Replace Contact Details] -->
+                        <li><i class="fas fa-phone" style="margin-right: 8px;"></i> + 94 777 890 800</li>
+                        <li><i class="fab fa-whatsapp" style="margin-right: 8px;"></i> + 94 727 890 800</li>
+                        <li><i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i> 29/2 Samagi Mawatha ,
+                            Kawdana Road Dehiwala.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Connect With Us</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 1rem;">Follow us for the latest arrivals and gemstone
+                        market insights.</p>
+                    <div class="footer-socials">
+                        <a href="https://www.youtube.com/@fareengems" aria-label="YouTube"><i
+                                class="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/fareengems/" aria-label="Instagram"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@fareengems" aria-label="TikTok"><i
+                                class="fab fa-tiktok"></i></a>
+                        <a href="https://web.facebook.com/fareengems" aria-label="Facebook"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/94727890800" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section class="social-media">
-            <div class="container">
-                <h2 class="section-title">Connect With Us</h2>
-                <div class="social-grid">
-                    <a href="https://etsy.com/shop/fareengems" target="_blank" rel="noopener noreferrer" class="social-link">
-                        <i class="fas fa-shopping-bag"></i>
-                        <span>Etsy</span>
-                    </a>
-                    <a href="https://facebook.com/fareengems" target="_blank" rel="noopener noreferrer" class="social-link">
-                        <i class="fab fa-facebook"></i>
-                        <span>Facebook</span>
-                    </a>
-                    <a href="https://www.youtube.com/@fareengems" target="_blank" rel="noopener noreferrer" class="social-link">
-                        <i class="fab fa-youtube"></i>
-                        <span>YouTube</span>
-                    </a>
-                    <a href="https://tiktok.com/@fareengems" target="_blank" rel="noopener noreferrer" class="social-link">
-                        <i class="fab fa-tiktok"></i>
-                        <span>TikTok</span>
-                    </a>
-                    <a href="https://instagram.com/fareengems" target="_blank" rel="noopener noreferrer" class="social-link">
-                        <i class="fab fa-instagram"></i>
-                        <span>Instagram</span>
-                    </a>
-                    <a href="https://linkedin.com/company/fareengems" target="_blank" rel="noopener noreferrer" class="social-link">
-                        <i class="fab fa-linkedin"></i>
-                        <span>LinkedIn</span>
-                    </a>
-                </div>
+            <div class="footer-bottom">
+                &copy; <span id="year"></span> Fareen Gems. All Rights Reserved.
             </div>
-        </section>
+        </div>
+    </footer>
 
-        <footer class="footer">
-            <div class="footer-text">
-                © <span id="current-year"></span> Fareen Gems. All rights reserved.
-            </div>
-        </footer>
-    </main>
-    <script src="script.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
+
 </html>
