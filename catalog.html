@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3RDTRQKQVB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-3RDTRQKQVB');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Catalog - Fareen Gems | Premium Natural Colored Gemstones</title>
+    <meta name="description" id="metaDescription"
+        content="Browse our complete catalog of premium natural colored gemstones. Filter by weight, shape, and treatment to find your perfect stone.">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Catalog - Fareen Gems">
+    <meta property="og:description"
+        content="Browse our complete catalog of premium natural colored gemstones. Filter by weight, shape, and treatment to find your perfect stone.">
+    <meta property="og:image" content="images/og-image-placeholder.jpg">
+    <meta property="og:url" content="https://fareengems.com/catalog.html">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon (Placeholder) -->
+    <link rel="icon" type="image/png" href="images/favicon-placeholder.png">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <style>
+        /* Ensuring link wrapper acts exactly like the div card */
+        a.gem-card {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .price-tag {
+            color: var(--rich-gold);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-family: var(--font-heading);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 10px;">
+                <img src="images/logo.jpg" alt="Fareen Gems Logo" style="height: 80px; width: auto; max-height: 100px;">
+                <span style="color: var(--sapphire-blue);">Fareen</span><span
+                    style="color: var(--sapphire-blue);">Gems</span>
+            </a>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+
+                <a href="catalog.html" class="nav-link active">Catalog</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+            </nav>
+
+            <i class="fas fa-bars mobile-menu-btn"></i>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Catalog</h1>
+            <p style="color: var(--silver); margin: 0 auto; max-width: 600px; font-size: 1.1rem;">
+                Explore our full collection of natural colored gemstones.
+            </p>
+        </div>
+    </section>
+
+    <section class="section bg-light">
+        <div class="container">
+            
+            <!-- Filter Bar -->
+            <div class="filters" style="display: flex; gap: 15px; margin-bottom: 3rem; justify-content: center; align-items: center; flex-wrap: wrap;">
+                <input type="text" id="searchInput" class="form-control" placeholder="Search gemstone name..." style="width: 250px;">
+                
+                <select id="weightFilter" class="form-control" style="width: 200px;">
+                    <option value="">All Weights</option>
+                    <!-- Options populated dynamically based on data -->
+                </select>
+
+                <select id="shapeFilter" class="form-control" style="width: 200px;">
+                    <option value="">All Shapes</option>
+                </select>
+                
+                <select id="treatmentFilter" class="form-control" style="width: 200px;">
+                    <option value="">All Treatments</option>
+                </select>
+            </div>
+
+
+
+            <!-- Main Catalog Section -->
+            <div id="catalogSection">
+                <h2 class="section-title text-center" style="font-size: 2rem; margin-bottom: 2rem;">All Gemstones</h2>
+                <div id="catalogGrid" class="gem-grid">
+                    <!-- Catalog items will be rendered here -->
+                </div>
+                
+                <!-- Pagination -->
+                <div class="text-center" style="margin-top: 3rem;">
+                    <button id="loadMoreBtn" class="btn btn-primary" style="display: none; padding: 12px 40px;">Load More</button>
+                    <p id="noResultsMsg" style="display: none; color: #666; font-size: 1.1rem;">No gemstones found matching your criteria.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="index.html" class="logo"><span> Fareen Gems</span></a>
+                    <p style="margin-top: 1rem; font-size: 0.95rem;">Premium natural colored gemstones specializing in
+                        Alexandrite, Sapphires, Rubies, and rare collection stones designed for traders, collectors,
+                        and jewelers.</p>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+
+                        <li><a href="catalog.html">Catalog</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-links" style="font-size: 0.95rem;">
+                        <li><i class="fas fa-phone" style="margin-right: 8px;"></i> + 94 777 890 800</li>
+                        <li><i class="fab fa-whatsapp" style="margin-right: 8px;"></i> + 94 727 890 800</li>
+                        <li><i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i> 29/2 Samagi Mawatha ,
+                            Kawdana Road Dehiwala.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Connect With Us</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 1rem;">Follow us for the latest arrivals and gemstone
+                        market insights.</p>
+                    <div class="footer-socials">
+                        <a href="https://www.youtube.com/@fareengems" aria-label="YouTube"><i
+                                class="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/fareengems/" aria-label="Instagram"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@fareengems" aria-label="TikTok"><i
+                                class="fab fa-tiktok"></i></a>
+                        <a href="https://web.facebook.com/fareengems" aria-label="Facebook"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/94727890800" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                &copy; <span id="year"></span> Fareen Gems. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Catalog Logic
+        let allStones = [];
+        let filteredStones = [];
+        let displayedCount = 0;
+        const ITEMS_PER_PAGE = 25;
+
+        const searchInput = document.getElementById('searchInput');
+        const weightFilter = document.getElementById('weightFilter');
+        const shapeFilter = document.getElementById('shapeFilter');
+        const treatmentFilter = document.getElementById('treatmentFilter');
+        const catalogGrid = document.getElementById('catalogGrid');
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        const noResultsMsg = document.getElementById('noResultsMsg');
+
+        // Document Meta Fields
+        const pageTitle = document.getElementById('pageTitle');
+        const metaDescription = document.getElementById('metaDescription');
+
+        // Fetch data
+        async function fetchStones() {
+            try {
+                const response = await fetch('stones.json');
+                allStones = await response.json();
+                
+                populateFilters();
+                applyFilters();
+            } catch (error) {
+                console.error('Error loading stones:', error);
+                catalogGrid.innerHTML = '<p class="text-center" style="width: 100%;">Failed to load catalogue data. Please try again later.</p>';
+            }
+        }
+
+        function populateFilters() {
+            const shapes = new Set();
+            const treatments = new Set();
+            let maxWeight = 0;
+
+            allStones.forEach(stone => {
+                if (stone.shape) shapes.add(stone.shape);
+                if (stone.treatment) treatments.add(stone.treatment);
+                
+                const w = parseFloat(stone.weight);
+                if (!isNaN(w) && w > maxWeight) {
+                    maxWeight = w;
+                }
+            });
+
+            // Populate Shapes
+            Array.from(shapes).sort().forEach(shape => {
+                const option = document.createElement('option');
+                option.value = shape;
+                option.textContent = shape;
+                shapeFilter.appendChild(option);
+            });
+
+            // Populate Treatments
+            Array.from(treatments).sort().forEach(treatment => {
+                const option = document.createElement('option');
+                option.value = treatment;
+                option.textContent = treatment;
+                treatmentFilter.appendChild(option);
+            });
+
+            // Populate Weights based on max weight found (e.g., 0ct, 1ct ... maxCt)
+            const maxFloor = Math.floor(maxWeight);
+            for (let i = 0; i <= maxFloor; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = i + 'ct';
+                weightFilter.appendChild(option);
+            }
+        }
+
+        // Generate dynamic SEO Title and Description based on active filters
+        function updateSEOTags(searchVal, weightVal, shapeVal, treatmentVal) {
+            let tags = [];
+            if (weightVal !== "") tags.push(weightVal + 'ct');
+            if (shapeVal !== "") tags.push(shapeVal);
+            if (treatmentVal !== "") tags.push(treatmentVal);
+            if (searchVal !== "") tags.push(searchVal);
+
+            let baseTitle = "Catalog - Fareen Gems | Premium Natural Colored Gemstones";
+            let baseDesc = "Browse our complete catalog of premium natural colored gemstones. Filter by weight, shape, and treatment to find your perfect stone.";
+
+            if (tags.length > 0) {
+                // Formatting for display: e.g., "1ct Oval Unheated Sapphire"
+                const activeFiltersText = tags.map(t => t.charAt(0).toUpperCase() + t.slice(1)).join(' ');
+                
+                pageTitle.textContent = `${activeFiltersText} | Catalog - Fareen Gems`;
+                metaDescription.setAttribute("content", `Explore our selection of ${activeFiltersText}. ${baseDesc}`);
+            } else {
+                // Using defaults
+                pageTitle.textContent = baseTitle;
+                metaDescription.setAttribute("content", baseDesc);
+            }
+        }
+
+        function renderStoneCard(stone) {
+            const formattedWeight = !isNaN(parseFloat(stone.weight)) ? parseFloat(stone.weight).toFixed(2) + ' ct' : 'N/A';
+            const price = stone.price ? '$' + stone.price.toLocaleString() : 'Price on Request';
+
+            // Turning the entire card into a clickable <a> tag linking to product page
+            return `
+                <a href="product.html?id=${stone.id}" class="gem-card">
+                    <div class="gem-img-wrapper">
+                        <img src="${stone.image || 'images/welcome-gem-placeholder.jpg'}" alt="${stone.title}" style="background-color: #e0e0e0;">
+                    </div>
+                    <div class="gem-content text-left">
+                        <h3 class="gem-title">${stone.title}</h3>
+                        <p class="price-tag">${price}</p>
+                        <div class="gem-specs" style="margin-bottom: 0;">
+                            <div><strong>Weight</strong> ${formattedWeight}</div>
+                            <div><strong>Shape</strong> ${stone.shape || 'N/A'}</div>
+                        </div>
+                    </div>
+                </a>
+            `;
+        }
+
+        function applyFilters() {
+            const searchVal = searchInput.value.toLowerCase().trim();
+            const weightVal = weightFilter.value;
+            const shapeVal = shapeFilter.value;
+            const treatmentVal = treatmentFilter.value;
+
+            // Dynamically update SEO Titles & Meta tags
+            updateSEOTags(searchVal, weightVal, shapeVal, treatmentVal);
+
+            filteredStones = allStones.filter(stone => {
+                const matchesSearch = !searchVal || (stone.title && stone.title.toLowerCase().includes(searchVal)) || (stone.type && stone.type.toLowerCase().includes(searchVal));
+                
+                let matchesWeight = true;
+                if (weightVal !== "") {
+                    const w = parseFloat(stone.weight);
+                    matchesWeight = !isNaN(w) && Math.floor(w) === parseInt(weightVal, 10);
+                }
+
+                const matchesShape = !shapeVal || stone.shape === shapeVal;
+                const matchesTreatment = !treatmentVal || stone.treatment === treatmentVal;
+                
+                return matchesSearch && matchesWeight && matchesShape && matchesTreatment;
+            });
+            
+            // Reset main catalog display
+            catalogGrid.innerHTML = '';
+            displayedCount = 0;
+            
+            if (filteredStones.length === 0) {
+                noResultsMsg.style.display = 'block';
+                loadMoreBtn.style.display = 'none';
+            } else {
+                noResultsMsg.style.display = 'none';
+                loadMoreItems();
+            }
+        }
+
+
+
+        function loadMoreItems() {
+            const fragment = document.createDocumentFragment();
+            const tempDiv = document.createElement('div');
+            
+            const nextItems = filteredStones.slice(displayedCount, displayedCount + ITEMS_PER_PAGE);
+            
+            nextItems.forEach(stone => {
+                tempDiv.innerHTML = renderStoneCard(stone, false);
+                fragment.appendChild(tempDiv.firstElementChild); // Extracts <a> out of the temp <div>
+            });
+
+            catalogGrid.appendChild(fragment);
+            displayedCount += nextItems.length;
+
+            if (displayedCount >= filteredStones.length) {
+                loadMoreBtn.style.display = 'none';
+            } else {
+                loadMoreBtn.style.display = 'inline-block';
+            }
+        }
+
+        // Event Listeners
+        searchInput.addEventListener('input', applyFilters);
+        weightFilter.addEventListener('change', applyFilters);
+        shapeFilter.addEventListener('change', applyFilters);
+        treatmentFilter.addEventListener('change', applyFilters);
+        loadMoreBtn.addEventListener('click', loadMoreItems);
+
+        // Init
+        document.addEventListener('DOMContentLoaded', fetchStones);
+    </script>
+</body>
+
+</html>
