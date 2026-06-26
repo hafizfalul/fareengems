@@ -1,0 +1,2517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3RDTRQKQVB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-3RDTRQKQVB');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog - Fareen Gems | Premium Natural Gemstones</title>
+    <meta name="description"
+        content="Browse our collection of premium natural colored gemstones including Alexandrite, Blue Sapphire, Pink Sapphire, Ruby, Emerald and more.">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        /* ============================================================
+           CATALOG PAGE STYLES — matches existing Fareen Gems design
+           ============================================================ */
+
+        /* Page Header Banner */
+        .catalog-page-header {
+            background-color: #bb0969;
+            padding: 5rem 0 3rem;
+            text-align: center;
+            color: #fff;
+        }
+
+        .catalog-page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .catalog-page-header p {
+            font-size: 1.05rem;
+            opacity: 0.85;
+            color: #fff;
+        }
+
+        /* ---- Category Filter Bar ---- */
+        .category-bar-wrap {
+            background: #fff;
+            border-bottom: 2px solid #f0f0f0;
+            position: sticky;
+            top: 80px;
+            z-index: 900;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .category-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 14px 20px;
+            max-width: 1300px;
+            margin: 0 auto;
+            justify-content: center;
+        }
+
+        .cat-btn {
+            padding: 8px 18px;
+            border-radius: 30px;
+            border: 1.5px solid #ddd;
+            background: #fafafa;
+            color: #444;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.22s ease;
+            white-space: nowrap;
+            letter-spacing: 0.3px;
+        }
+
+        .cat-btn:hover {
+            border-color: #bb0969;
+            color: #bb0969;
+            background: #fff5f9;
+        }
+
+        .cat-btn.active {
+            background: #bb0969;
+            color: #fff;
+            border-color: #bb0969;
+        }
+
+        /* ---- Result Count ---- */
+        .results-info {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 16px 20px 4px;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* ---- Gem Grid ---- */
+        .gem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 24px;
+            padding: 16px 20px 60px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* ---- Gem Card ---- */
+        .gem-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            cursor: pointer;
+            border: 1px solid #efefef;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gem-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+        }
+
+        .gem-card-img-wrap {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background: #f4f4f4;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gem-card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.35s ease;
+        }
+
+        .gem-card:hover .gem-card-img-wrap img {
+            transform: scale(1.06);
+        }
+
+        /* Lazy load fade-in */
+        .gem-card-img-wrap img.lazy {
+            opacity: 0;
+            transition: opacity 0.4s ease, transform 0.35s ease;
+        }
+
+        .gem-card-img-wrap img.loaded {
+            opacity: 1;
+        }
+
+        /* Placeholder shimmer while image loads */
+        .img-placeholder {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        /* Certified badge */
+        .cert-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(187, 9, 105, 0.88);
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-family: 'Lato', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .gem-card-info {
+            padding: 14px 16px 18px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .gem-card-title {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            line-height: 1.35;
+        }
+
+        .gem-card-meta {
+            font-size: 0.78rem;
+            color: #999;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .gem-card-action {
+            margin-top: auto;
+            padding-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #bb0969;
+            font-size: 0.8rem;
+            font-weight: 700;
+            font-family: 'Lato', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ---- No Results ---- */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 80px 20px;
+            color: #aaa;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            display: block;
+            color: #ddd;
+        }
+
+        /* ---- Load More / Sentinel ---- */
+        #load-sentinel {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            width: 28px;
+            height: 28px;
+            border: 3px solid #eee;
+            border-top-color: #bb0969;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            display: none;
+        }
+
+        .spinner.visible {
+            display: block;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ---- Inquiry Modal ---- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal-box {
+            background: #fff;
+            border-radius: 14px;
+            max-width: 460px;
+            width: 100%;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+            animation: modalIn 0.25s ease;
+        }
+
+        @keyframes modalIn {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: #f4f4f4;
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .modal-body h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            color: #bb0969;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .modal-body p {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.88rem;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .modal-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .modal-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 18px;
+            border-radius: 8px;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .modal-btn.primary {
+            background: #bb0969;
+            color: #fff;
+        }
+
+        .modal-btn.primary:hover {
+            background: #9a0757;
+        }
+
+        .modal-btn.secondary {
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .modal-btn.secondary:hover {
+            background: #ebebeb;
+        }
+
+        .modal-btn i {
+            font-size: 1rem;
+            width: 20px;
+        }
+
+        .modal-close {
+            float: right;
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: #aaa;
+            line-height: 1;
+            margin-top: -4px;
+        }
+
+        .modal-close:hover {
+            color: #333;
+        }
+
+        /* ---- Mobile tweaks ---- */
+        @media (max-width: 600px) {
+            .gem-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+                padding: 12px 12px 60px;
+            }
+
+            .catalog-page-header h1 {
+                font-size: 2rem;
+            }
+
+            .gem-card-title {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============ HEADER (matches your existing site) ============ -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo" style="display:flex;align-items:center;gap:10px;">
+                <img src="images/logo.jpg" alt="Fareen Gems Logo" style="height:60px;width:auto;max-height:80px;">
+                <span style="color:var(--sapphire-blue);">Fareen</span><span
+                    style="color:var(--sapphire-blue);">Gems</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="catalog.html" class="nav-link active">Catalog</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+            </nav>
+            <i class="fas fa-bars mobile-menu-btn"></i>
+        </div>
+    </header>
+
+    <!-- ============ PAGE BANNER ============ -->
+    <div class="catalog-page-header">
+        <h1>Our Gemstone Collection</h1>
+        <p>Ethically sourced · Certified · Exceptional quality</p>
+    </div>
+
+    <!-- ============ CATEGORY FILTER BAR ============ -->
+    <div class="category-bar-wrap">
+        <div class="category-bar" id="categoryBar">
+            <button class="cat-btn active" data-cat="All">All Stones</button>
+            <button class="cat-btn" data-cat="Alexandrite">Alexandrite</button>
+            <button class="cat-btn" data-cat="Blue Sapphire">Blue Sapphire</button>
+            <button class="cat-btn" data-cat="Pink Sapphire">Pink Sapphire</button>
+            <button class="cat-btn" data-cat="Padparadscha">Padparadscha</button>
+            <button class="cat-btn" data-cat="Green Sapphire">Green Sapphire</button>
+            <button class="cat-btn" data-cat="Ruby">Ruby</button>
+            <button class="cat-btn" data-cat="Fancy Sapphire">Fancy Sapphire</button>
+            <button class="cat-btn" data-cat="Star Sapphire">Star Sapphire</button>
+            <button class="cat-btn" data-cat="Yellow Sapphire">Yellow Sapphire</button>
+            <button class="cat-btn" data-cat="Emerald">Emerald</button>
+            <button class="cat-btn" data-cat="Aquamarine">Aquamarine</button>
+            <button class="cat-btn" data-cat="Blue Zircon">Blue Zircon</button>
+            <button class="cat-btn" data-cat="Beryl">Beryl</button>
+            <button class="cat-btn" data-cat="Chrysoberyl">Chrysoberyl</button>
+            <button class="cat-btn" data-cat="Garnet">Garnet</button>
+            <button class="cat-btn" data-cat="Rarestone">Rarestone</button>
+            <button class="cat-btn" data-cat="Spinel">Spinel</button>
+            <button class="cat-btn" data-cat="Tourmaline">Tourmaline</button>
+            <button class="cat-btn" data-cat="Tsavorite">Tsavorite</button>
+            <button class="cat-btn" data-cat="Zircon">Zircon</button>
+            <button class="cat-btn" data-cat="Semi Precious">Semi Precious</button>
+        </div>
+    </div>
+
+    <!-- ============ RESULTS COUNT ============ -->
+    <div class="results-info" id="resultsInfo"></div>
+
+    <!-- ============ GEM GRID ============ -->
+    <div class="gem-grid" id="gemGrid"></div>
+
+    <!-- Infinite scroll trigger -->
+    <div id="load-sentinel">
+        <div class="spinner" id="spinner"></div>
+    </div>
+
+    <!-- ============ INQUIRY MODAL ============ -->
+    <div class="modal-overlay" id="inquiryModal">
+        <div class="modal-box">
+            <img src="" alt="" class="modal-img" id="modalImg">
+            <div class="modal-body">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                    <h3 id="modalTitle"></h3>
+                    <button class="modal-close" id="modalClose">&times;</button>
+                </div>
+                <p id="modalMeta"></p>
+                <div class="modal-actions">
+                    <a href="contact.html" class="modal-btn primary" id="modalContactBtn">
+                        <i class="fas fa-envelope"></i> Inquire About This Stone
+                    </a>
+                    <a href="#" class="modal-btn secondary" id="modalDriveBtn" target="_blank">
+                        <i class="fab fa-google-drive"></i> View Photos & Certificate
+                    </a>
+                    <a href="#" class="modal-btn secondary" id="modalVideoBtn" target="_blank">
+                        <i class="fab fa-youtube"></i> Watch Video
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const allStones = [
+
+            // ─────────── ALEXANDRITE ───────────
+            {
+                id: "alx-1.08",
+                title: "1.08 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "CGTL",
+                local_image: "Alx_1.08.JPG",     // ← e.g. "alx_037.jpg"  (file must be in your images/ folder)
+                image_id: "",        // ← Google Drive file ID (used only if local_image is empty)
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-0.85",
+                title: "0.85 ct Natural Unheated Alexandrite",
+                category: "Alexandrite",
+                cert: "AGCL",
+                local_image: "Alx_0.85.JPG",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-3.10",
+                title: "3.10 ct Natural Untreated Alexandrite (Sri Lanka)",
+                category: "Alexandrite",
+                cert: "GIA",
+                local_image: "Alx_3.10.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "alx-1.82",
+                title: "1.82 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "GIA",
+                local_image: "Alx_1.82.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-091",
+                title: "0.91 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "AGTL",
+                local_image: "Alx_0.91_ANS.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-098",
+                title: "0.98 ct Natural Untreated Alexandrite Pair",
+                category: "Alexandrite",
+                cert: "AGCL",
+                local_image: "Alx_0.98.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-0.75",
+                title: "0.75 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "PGTL",
+                local_image: "Alx_0.75.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "alx-0.62",
+                title: "0.62 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "AGTL",
+                local_image: "Alx 0.62.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-0.57",
+                title: "0.57 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "AGTL",
+                local_image: "Alx 0.57.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            {
+                id: "alx-1.04-1",
+                title: "1.04 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "CGTL",
+                local_image: "Alx_1.04_1.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-1.04",
+                title: "1.04 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "PGTL",
+                local_image: "Alx_1.04.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-1.05",
+                title: "1.05 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "AGCL",
+                local_image: "Alx_1.05.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-0.88",
+                title: "0.88 ct Natural Unheated Alexandrite",
+                category: "Alexandrite",
+                cert: "CGTL",
+                local_image: "Alx_0.88.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-064",
+                title: "1.21 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "PGTL",
+                local_image: "Alx_1.21.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-1.17-1",
+                title: "1.17 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "AGCL",
+                local_image: "Alx_1.17_1.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-072-1",
+                title: "0.72 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "GIA",
+                local_image: "Alx_0.72_1.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-090",
+                title: "0.89 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "GIA",
+                local_image: "Alx_0.89.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-093",
+                title: "0.93 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "GIA",
+                local_image: "Alx_0.93.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-096",
+                title: "0.96 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "GIA",
+                local_image: "Alx_0.96.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-0.37",
+                title: "0.37 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "CGCL",
+                local_image: "Alx_0.37.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-0.39",
+                title: "0.39 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "AGCL",
+                local_image: "Alx_0.39.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "Alx_0.50_ans",
+                title: "0.50 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "CGTL",
+                local_image: "Alx_0.50_ans.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-0.64",
+                title: "0.64 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "AGCL",
+                local_image: "Alx_0.64.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx_0.75_1",
+                title: "0.75 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "AGCL",
+                local_image: "Alx_0.75_1.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-094",
+                title: "0.94 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "AGCL",
+                local_image: "Alx_0.94.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-074",
+                title: "0.74 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "GIA",
+                local_image: "Alx_0.74.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alxce-1.14",
+                title: "1.14 ct Natural Untreated Alexandrite cats eye",
+                category: "Alexandrite",
+                cert: "GIA",
+                local_image: "Alx_CE_1.14.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alxce-1.18",
+                title: "1.18 ct Natural Untreated Alexandrite cats eye",
+                category: "Alexandrite",
+                cert: "GIA",
+                local_image: "Alx_CE_1.18.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-1.03",
+                title: "1.03 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "AGCL",
+                local_image: "Alx_1.03.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-104-1",
+                title: "1.04 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "AGCL",
+                local_image: "Alx_1.04_2.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-0.72",
+                title: "0.72 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "AGCL",
+                local_image: "Alx_0.72.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-0.69",
+                title: "0.69 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "AGTL",
+                local_image: "Alx_0.69.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx_0.59_1.jpg",
+                title: "0.59 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "AGTL",
+                local_image: "Alx_0.59_1.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-0.59",
+                title: "0.59 ct Natural Untreated Alexandrite",
+                category: "Alexandrite",
+                cert: "AGCL",
+                local_image: "Alx_0.59.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-0.50-1",
+                title: "0.50 ct Natural Unheated Alexandrite",
+                category: "Alexandrite",
+                cert: "AGTL",
+                local_image: "Alx_0.50_1.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "alx-0.50-2",
+                title: "0.50 ct Natural Unheated Alexandrite",
+                category: "Alexandrite",
+                cert: "AGTL",
+                local_image: "Alx_0.50_2.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "Alx-0.55",
+                title: "0.55 ct Natural Unheated Alexandrite",
+                category: "Alexandrite",
+                cert: "AGCL",
+                local_image: "Alx_0.55.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Alx-0.54",
+                title: "0.54 ct Natural Unheated Alexandrite",
+                category: "Alexandrite",
+                cert: "AGCL",
+                local_image: "Alx_0.54.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Alx-0.48",
+                title: "0.48 ct Natural Unheated Alexandrite",
+                category: "Alexandrite",
+                cert: "AGCL",
+                local_image: "Alx_0.48.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Alx-0.48-1",
+                title: "0.48 ct Natural Unheated Alexandrite",
+                category: "Alexandrite",
+                cert: "AGCL",
+                local_image: "Alx_0.48_1.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            // ─────────── BLUE SAPPHIRE ───────────
+            {
+                id: "B-Sapp-5.36",
+                title: "5.36 ct Natural Heated Blue Sapphire",
+                category: "Blue Sapphire",
+                cert: "GIA",
+                local_image: "B_Sapp_5.36.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "B-Sapp-N-1.03",
+                title: "1.03 ct Natural Unheated Blue Sapphire (Vivid Blue)",
+                category: "Blue Sapphire",
+                cert: "EGL",
+                local_image: "B_Sapp_N_1.03.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "B-Sapp-N-1.65",
+                title: "1.65 ct Natural Unheated Blue Sapphire (Royal Blue)",
+                category: "Blue Sapphire",
+                cert: "EGL",
+                local_image: "B_Sapp_N_1.65.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "B-Sapp-N-1.10",
+                title: "1.10 ct Natural Unheated Blue Sapphire (Vivid Blue) - Sri Lanka",
+                category: "Blue Sapphire",
+                cert: "EGL",
+                local_image: "B_Sapp_N_1.10.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "B-Sapp-N-1.77",
+                title: "1.77 ct Natural Unheated Blue Sapphire",
+                category: "Blue Sapphire",
+                cert: "EGL",
+                local_image: "B_Sapp_N_1.77.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "B-Sapp-1.03",
+                title: "1.03 ct Natural heated Blue Sapphire",
+                category: "Blue Sapphire",
+                cert: "AGCL",
+                local_image: "B_Sapp_1.03.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            {
+                id: "B-Sapp-3.64",
+                title: "3.64 ct Natural Unheated Blue Sapphire",
+                category: "Blue Sapphire",
+                cert: "CGTL",
+                local_image: "B_Sapp_3.64.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "B-Sapp-1.05",
+                title: "1.05 ct Natural Heated Blue Sapphire (Cornflower Blue)",
+                category: "Blue Sapphire",
+                cert: "PGTL",
+                local_image: "B_Sapp_1.05.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "B-Sapp-3.14",
+                title: "3.14 ct Natural Heated Blue Sapphire (Vivid Royal Blue)",
+                category: "Blue Sapphire",
+                cert: "CGTL",
+                local_image: "B_Sapp_3.14.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "B-Sapp-6.79",
+                title: "6.79 ct Natural Heated Blue Sapphire (Cornflower Blue)",
+                category: "Blue Sapphire",
+                cert: "CGTL",
+                local_image: "B_Sapp_6.79.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+
+
+            {
+                id: "bsapp-164",
+                title: "1.64 ct Natural Heated Royal Blue Sapphire",
+                category: "Blue Sapphire",
+                cert: "AGCL",
+                local_image: "BSapp_1.64.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            // ─────────── PINK SAPPHIRE ───────────
+            {
+                id: "P-Sapp-N-1.03",
+                title: "1.03 ct Natural Unheated Pink Sapphire",
+                category: "Pink Sapphire",
+                cert: "EGL",
+                local_image: "P_Sapp_N_1.03.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "P-Sapp-N-3.01",
+                title: "3.01 ct Natural Unheated Pink Sapphire",
+                category: "Pink Sapphire",
+                cert: "EGL",
+                local_image: "P_Sapp_N_3.01.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            {
+                id: "P-Sapp-N-2.21",
+                title: "2.21 ct Natural Unheated Pink Sapphire",
+                category: "Pink Sapphire",
+                cert: "EGL",
+                local_image: "P_Sapp_N_2.21.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "P-Sapp-0.61",
+                title: "2.21 ct Natural Heated Pink Sapphire",
+                category: "Pink Sapphire",
+                cert: "CGTL",
+                local_image: "P_Sapp_0.61.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            {
+                id: "P-Sapp-N-1.33",
+                title: "1.33 ct Natural Unheated Pink Sapphire",
+                category: "Pink Sapphire",
+                cert: "PGTL",
+                local_image: "P_Sapp_N_1.33.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "P-Sapp-N-1.52",
+                title: "1.52 ct Natural Unheated Pink Sapphire",
+                category: "Pink Sapphire",
+                cert: "EGL",
+                local_image: "P_Sapp_N_1.52.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "P-Sapp-N-1.53",
+                title: "1.53 ct Natural Unheated Pink Sapphire",
+                category: "Pink Sapphire",
+                cert: "EGL",
+                local_image: "P_Sapp_N_1.53.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            // ─────────── PADPARADSCHA ───────────
+            {
+                id: "Pad-N-2.58",
+                title: "2.58 ct Natural Unheated Pinkish Orange Padparadscha",
+                category: "Padparadscha",
+                cert: "AGCL",
+                local_image: "Pad_N_2.58.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Pad-N-1.10",
+                title: "1.10 ct Natural Heated Padparadscha",
+                category: "Padparadscha",
+                cert: "GIA",
+                local_image: "Pad_N_1.10.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            {
+                id: "Pad-1.49",
+                title: "1.49 ct Natural Heated Orangish Pink Padparadscha",
+                category: "Padparadscha",
+                cert: "EGL",
+                local_image: "Pad_1.49.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Pad-1.27-1",
+                title: "1.27 ct Natural Heated Orangish Pink Padparadscha",
+                category: "Padparadscha",
+                cert: "EGL",
+                local_image: "Pad_1.27_1.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "Pad_1.27",
+                title: "1.27 ct Natural Heated Orangish Pink Padparadscha",
+                category: "Padparadscha",
+                cert: "EGL",
+                local_image: "Pad_1.27.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "Pad-1.56",
+                title: "1.56 ct Natural Pinkish Orange Padparadscha",
+                category: "Padparadscha",
+                cert: "EGL",
+                local_image: "Pad_1.56.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            // ─────────── GREEN SAPPHIRE ───────────
+            {
+                id: "G-Sapp-N-1.16",
+                title: "1.16 ct Natural Unheated Green Sapphire",
+                category: "Green Sapphire",
+                cert: "AGTL",
+                local_image: "G_Sapp_N_1.16.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "G-Sapp-N-1.16-1",
+                title: "1.14 ct Natural Unheated Green Sapphire",
+                category: "Green Sapphire",
+                cert: "AGTL",
+                local_image: "G_Sapp_N_1.16_1.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            {
+                id: "G-Sapp-N-1.26",
+                title: "1.26 ct Natural Unheated Green Sapphire",
+                category: "Green Sapphire",
+                cert: "AGTL",
+                local_image: "G_Sapp_N_1.26.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "G-Sapp-N-1.63",
+                title: "1.63 ct Natural Unheated Green Sapphire",
+                category: "Green Sapphire",
+                cert: "EGL",
+                local_image: "GSapp_N_1.63.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "G-Sapp-N-1.58",
+                title: "1.58 ct Natural Heated Yellowish Green Sapphire",
+                category: "Green Sapphire",
+                cert: "EGL",
+                local_image: "G_Sapp_N_1.58.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "G-Sapp-3.08",
+                title: "3.08 ct Natural Heated Green Sapphire",
+                category: "Green Sapphire",
+                cert: "AGTL",
+                local_image: "G_Sapp_3.08.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "G-Sapp-N-5.13",
+                title: "5.13 ct Natural Unheated Green Sapphire",
+                category: "Green Sapphire",
+                cert: "EGL",
+                local_image: "G_Sapp_N_5.13.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            // ─────────── Ruby ───────────
+            {
+                id: "Ruby-N-1.01",
+                title: "1.01 ct Natural Unheated Pinkish Red Ruby (Mozambique)",
+                category: "Ruby",
+                cert: "EGL",
+                local_image: "Ruby_N_1.01.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Ruby-N-0.93",
+                title: "0.93 ct Natural Unheated Pinkish Red Ruby",
+                category: "Ruby",
+                cert: "EGL",
+                local_image: "Ruby_N_0.93.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Ruby-N-1.03",
+                title: "1.03 ct Natural Unheated Pinkish Red Ruby",
+                category: "Ruby",
+                cert: "EGL",
+                local_image: "Ruby_N_1.03.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Ruby-N-1.08",
+                title: "1.08 ct Natural Unheated Pinkish Red Ruby",
+                category: "Ruby",
+                cert: "AGCL",
+                local_image: "Ruby_N_1.08.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Ruby-0.62",
+                title: "0.62 ct Natural Unheated Orangish Red Ruby",
+                category: "Ruby",
+                cert: "GIA",
+                local_image: "Ruby_0.62.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Ruby-N-0.49",
+                title: "0.49 ct Natural Unheated Ruby (Vivid Red)",
+                category: "Ruby",
+                cert: "CGTL",
+                local_image: "Ruby_N_0.49.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Ruby-N-0.53",
+                title: "0.53 ct Natural Unheated Purplish Red Ruby",
+                category: "Ruby",
+                cert: "EGL",
+                local_image: "Ruby_N_0.53.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Ruby-N-0.56",
+                title: "0.56 ct Natural Unheated Red Ruby",
+                category: "Ruby",
+                cert: "EGL",
+                local_image: "Ruby_N_0.56.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Ruby-N-0.74",
+                title: "0.74 ct Natural Unheated Ruby",
+                category: "Ruby",
+                cert: "EGL",
+                local_image: "Ruby_N_0.74.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            // ─────────── FANCY SAPPHIRE ───────────
+            {
+                id: "wsapp-5.45",
+                title: "5.45 ct Natural Unheated White Sapphire Pair",
+                category: "Fancy Sapphire",
+                cert: "AGCL",
+                local_image: "WSapp_5.45.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "BiSapp-3.07",
+                title: "3.07 ct Natural Heated Bi Color Sapphire",
+                category: "Fancy Sapphire",
+                cert: "EGL",
+                local_image: "BiSapp_3.07.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            {
+                id: "Pu-Sapp-2.31",
+                title: "2.31 ct Natural Heated Purple Sapphire",
+                category: "Fancy Sapphire",
+                cert: "AGCL",
+                local_image: "Pu_Sapp_2.31.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            {
+                id: "O-Sapp-4.69",
+                title: "4.69 ct Natural Heated Orange Sapphire",
+                category: "Fancy Sapphire",
+                cert: "EGL",
+                local_image: "O_Sapp_4.69.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+
+            {
+                id: "YGSapp-N-1.52",
+                title: "1.52 ct Natural Unheated Yellowish Green Sapphire",
+                category: "Fancy Sapphire",
+                cert: "EGL",
+                local_image: "YGSapp_N_1.52.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+
+            {
+                id: "BroSapp-1.55",
+                title: "1.55 ct Natural Heated Orangish Brown Sapphire",
+                category: "Fancy Sapphire",
+                cert: "EGL",
+                local_image: "BroSapp_1.55.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+
+            {
+                id: "BroSapp-N-1.14",
+                title: "1.14 ct Natural Unheated Brown Sapphire",
+                category: "Fancy Sapphire",
+                cert: "EGL",
+                local_image: "BroSapp_N_1.14.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+
+            {
+                id: "BiSapp-0.90",
+                title: "0.90 ct Natural Heated Bi Color Sapphire",
+                category: "Fancy Sapphire",
+                cert: "AGCL",
+                local_image: "BiSapp_0.90.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+
+            {
+                id: "BiSapp-1.25",
+                title: "1.25 ct Natural Heated Bi Color Sapphire",
+                category: "Fancy Sapphire",
+                cert: "",
+                local_image: "BiSapp_1.25.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+
+            {
+                id: "BiSapp-N-2.08",
+                title: "2.08 ct Natural Unheated Bi Color Sapphire",
+                category: "Fancy Sapphire",
+                cert: "",
+                local_image: "BiSapp_N_2.08.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            {
+                id: "BiSapp-N-1.35",
+                title: "1.35 ct Natural Unheated Bi Color Sapphire",
+                category: "Fancy Sapphire",
+                cert: "",
+                local_image: "BiSapp_N_1.35.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            {
+                id: "BiSapp-N-1.51",
+                title: "1.51 ct Natural Unheated Bi Color Sapphire",
+                category: "Fancy Sapphire",
+                cert: "",
+                local_image: "BiSapp_N_1.51.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            {
+                id: "BiSapp-N-1.62",
+                title: "1.62 ct Natural Unheated Bi Color Sapphire",
+                category: "Fancy Sapphire",
+                cert: "",
+                local_image: "BiSapp_N_1.62.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+
+            {
+                id: "BiSapp-N-1.77",
+                title: "1.77 ct Natural Unheated Bi Color Sapphire",
+                category: "Fancy Sapphire",
+                cert: "",
+                local_image: "BiSapp_N_1.77.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            // ─────────── Yellow SAPPHIRE ───────────
+
+
+            {
+                id: "ysapp-3.05",
+                title: "3.05 ct Natural Unheated Vivid Yellow Sapphire",
+                category: "Yellow Sapphire",
+                cert: "CGTL",
+                local_image: "YSapp_N_3.06.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Y-Sapp-N-1.56",
+                title: "1.56 ct Natural Unheated Yellow Sapphire",
+                category: "Yellow Sapphire",
+                cert: "EGL",
+                local_image: "Y_Sapp_N_1.56.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            {
+                id: "Y-Sapp-N-1.36",
+                title: "1.36 ct Natural Unheated Vivid Yellow Sapphire",
+                category: "Yellow Sapphire",
+                cert: "EGL",
+                local_image: "Y_Sapp_N_1.36.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            // ─────────── Tourmaline ───────────
+
+
+            {
+                id: "PTour-5.51",
+                title: "5.51 ct Natural Untreated Pink Tourmaline",
+                category: "Tourmaline",
+                cert: "",
+                local_image: "PTour_5.51.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "BroTour-8.53",
+                title: "8.53 ct Natural Untreated Brown Tourmaline",
+                category: "Tourmaline",
+                cert: "",
+                local_image: "BroTour_8.53.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "BroTour-9.66",
+                title: "9.66 ct Natural Untreated Pink Tourmaline",
+                category: "Tourmaline",
+                cert: "",
+                local_image: "BroTour_9.66.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "GTour_1.38",
+                title: "1.38 ct Natural Untreated Blue/Green Tourmaline",
+                category: "Tourmaline",
+                cert: "",
+                local_image: "GTour_1.38.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "GTour-6.46",
+                title: "6.46 ct Natural Untreated Green Tourmaline",
+                category: "Tourmaline",
+                cert: "",
+                local_image: "GTour_6.46.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "GTour-10.91",
+                title: "10.91 ct Natural Untreated Green Tourmaline",
+                category: "Tourmaline",
+                cert: "",
+                local_image: "GTour_10.91.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "MGTour-6.85",
+                title: "6.85 ct Natural Untreated Mint Green Tourmaline",
+                category: "Tourmaline",
+                cert: "",
+                local_image: "MGTour_6.85.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+
+
+            // ─────────── STAR SAPPHIRE ───────────
+
+            {
+                id: "PStarSapp-2.06",
+                title: "2.06 ct Natural Unheated Pink Star Sapphire (Sri Lanka)",
+                category: "Star Sapphire",
+                cert: "PGTL",
+                local_image: "PStarSapp_2.06.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "BSappStar-5.25",
+                title: "5.25 ct Natural Unheated Blue Star Sapphire (Sri Lanka)",
+                category: "Star Sapphire",
+                cert: "",
+                local_image: "BSappStar_5.25.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+
+            {
+                id: "YStarSapp-3.45",
+                title: "3.45 ct Natural Yellow Star Sapphire",
+                category: "Star Sapphire",
+                cert: "AGCL",
+                local_image: "YStarSapp_3.45.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "StarSapp-3.17",
+                title: "3.17 ct Natural Star Sapphire (Sri Lanka)",
+                category: "Star Sapphire",
+                cert: "PGTL",
+                local_image: "StarSapp_3.17.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Star-5.24",
+                title: "5.24 ct Natural Star Sapphire (Sri Lanka)",
+                category: "Star Sapphire",
+                cert: "PGTL",
+                local_image: "Star_5.24.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Star-10.30",
+                title: "10.30 ct Natural Star Sapphire (Sri Lanka)",
+                category: "Star Sapphire",
+                cert: "",
+                local_image: "Star_10.30.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            {
+                id: "StarSapp-11.52",
+                title: "11.52 ct Natural Star Sapphire (Sri Lanka)",
+                category: "Star Sapphire",
+                cert: "",
+                local_image: "StarSapp_11.52.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            // ─────────── AQUAMARINE ───────────
+            {
+                id: "Aqwa-2.31",
+                title: "2.31 ct Natural Aquamarine (Santa Maria)",
+                category: "Aquamarine",
+                cert: "CGTL",
+                local_image: "Aqwa_2.31.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Aqwa-3.28",
+                title: "3.28 ct Natural Aquamarine",
+                category: "Aquamarine",
+                cert: "",
+                local_image: "Aqwa_3.28.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Aqwa-7.31",
+                title: "7.31 ct Natural Aquamarine",
+                category: "Aquamarine",
+                cert: "",
+                local_image: "Aqwa_7.31.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Aqwa-11.65",
+                title: "11.65 ct Natural Aquamarine",
+                category: "Aquamarine",
+                cert: "GIA",
+                local_image: "Aqwa_11.65.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            {
+                id: "aqwa-2006",
+                title: "20.06 ct Natural Aquamarine | GIA Certified",
+                category: "Aquamarine",
+                cert: "GIA",
+                local_image: "aqwa_20.06.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            // ─────────── BLUE ZIRCON ───────────
+            {
+                id: "BZir-1.80",
+                title: "1.80 ct Natural Blue Zircon (Cambodia)",
+                category: "Blue Zircon",
+                cert: "",
+                local_image: "BZir_1.80.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "BZir-2.03",
+                title: "2.03 ct Natural Blue Zircon (Cambodia)",
+                category: "Blue Zircon",
+                cert: "",
+                local_image: "BZir_2.03.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "BZir-2.11",
+                title: "2.11 ct Natural Blue Zircon (Cambodia)",
+                category: "Blue Zircon",
+                cert: "",
+                local_image: "BZir_2.11.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "BZir-2.85",
+                title: "2.85 ct Natural Blue Zircon (Cambodia)",
+                category: "Blue Zircon",
+                cert: "",
+                local_image: "BZir_2.85.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            {
+                id: "BZir-1.76",
+                title: "1.76 ct Natural Blue Zircon (Cambodia)",
+                category: "Blue Zircon",
+                cert: "",
+                local_image: "BZir_1.76.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "BZir-3.64",
+                title: "3.64 ct Natural Blue Zircon (Cambodia)",
+                category: "Blue Zircon",
+                cert: "",
+                local_image: "BZir_3.64.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            // ─────────── BERYL ───────────
+            {
+                id: "Beryl-5.27",
+                title: "5.27 ct Natural Untreated Yellow Beryl (Heliodor)",
+                category: "Beryl",
+                cert: "CGTL",
+                local_image: "Beryl_5.27.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Morg-18.95",
+                title: "18.95 ct Natural Morganite",
+                category: "Beryl",
+                cert: "",
+                local_image: "Morg_18.95.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+
+            {
+                id: "Beryl-2.27",
+                title: "2.27 ct Natural Unheated Beryl",
+                category: "Beryl",
+                cert: "",
+                local_image: "Beryl_2.27.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            // ─────────── Chrysoberyl ───────────
+
+            {
+                id: "Chry-5.09",
+                title: "5.09 ct Natural Untreated Light Green Chrysoberyl",
+                category: "Chrysoberyl",
+                cert: "EGL",
+                local_image: "Chry_5.09.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            // ─────────── GARNET ───────────
+            {
+                id: "Gar-9.71",
+                title: "9.71 ct Natural Hessonite Garnet",
+                category: "Garnet",
+                cert: "AGCL",
+                local_image: "Gar_9.71.JPG",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Gar-10.32",
+                title: "10.32 ct Natural Untreated Rhodolite Garnet",
+                category: "Garnet",
+                cert: "",
+                local_image: "Gar_10.32.JPG",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Gar-3.31",
+                title: "3.31 ct Natural Untreated Hessonite Garnet",
+                category: "Garnet",
+                cert: "",
+                local_image: "Gar_3.31.JPG",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Gar-3.23",
+                title: "3.23 ct Natural Untreated Hessonite Garnet",
+                category: "Garnet",
+                cert: "",
+                local_image: "Gar_3.23.JPG",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+
+            {
+                id: "Gar-5.19",
+                title: "5.19 ct Natural Untreated Red Garnet",
+                category: "Garnet",
+                cert: "",
+                local_image: "Gar_ 5.19.JPG",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Gar-6.22",
+                title: "6.22 ct Natural Untreated Red Garnet (Sri Lanka)",
+                category: "Garnet",
+                cert: "",
+                local_image: "Gar_ 6.22.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "Gar-1.53",
+                title: "1.53 ct Natural Untreated Reddish Orange Garnet",
+                category: "Garnet",
+                cert: "PGTL",
+                local_image: "Gar_1.53.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Gar-2.11",
+                title: "2.11 ct Natural Untreated Pinkish Red Garnet (Sri Lanka)",
+                category: "Garnet",
+                cert: "",
+                local_image: "Gar_2.11.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Gar-2.89",
+                title: "9.71 ct Natural Untreated Pinkish Red Garnet",
+                category: "Garnet",
+                cert: "",
+                local_image: "Gar_2.89.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Gar-9.73",
+                title: "Gar 9.73 ct Natural Untreated Red Garnet (Sri Lanka)",
+                category: "Garnet",
+                cert: "",
+                local_image: "Gar_9.73.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "tsv-2.15",
+                title: "2.15 ct Natural Vivid Green Tsavorite",
+                category: "Tsavorite",
+                cert: "PGTL",
+                local_image: "Tsv_2.15.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            // ─────────── RARESTONE ───────────
+            {
+                id: "She-2.04",
+                title: "2.04 ct Natural Untreated Yellowish Green Scheelite",
+                category: "Rarestone",
+                cert: "PGTL",
+                local_image: "She_2.04.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "Taff-0.23",
+                title: "0.23 ct Natural Untreated Taaffeite Rough (Specimen)",
+                category: "Rarestone",
+                cert: "AGCL",
+                local_image: "Taff_0.23.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Taff-0.66",
+                title: "0.66 ct Natural Untreated Taaffeite",
+                category: "Rarestone",
+                cert: "AGCL",
+                local_image: "Taff_0.66.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Sin-6.87",
+                title: "6.87 ct Natural Untreated Sinhalite",
+                category: "Rarestone",
+                cert: "",
+                local_image: "Sin_6.87.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Jere-7.78",
+                title: "7.78 ct Natural Untreated Jeremejevite",
+                category: "Rarestone",
+                cert: "GIA",
+                local_image: "Jere_7.78.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "C-Spl-8.21",
+                title: "8.21 ct Natural Cobalt Blue Spinel",
+                category: "Rarestone",
+                cert: "GIA",
+                local_image: "C_Spl_8.21.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "C-Spl-12.35",
+                title: "12.35 ct Natural Cobalt Blue Spinel",
+                category: "Rarestone",
+                cert: "GIA",
+                local_image: "C_Spl_12.35.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            // ─────────── SPINEL ───────────
+            {
+                id: "P_Spl_2.06",
+                title: "2.06 ct Natural Untreated Pink Spinel",
+                category: "Spinel",
+                cert: "",
+                local_image: "P_Spl_2.06.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+            {
+                id: "B-Spl-1.56",
+                title: "1.56 ct Natural Untreated Blue Spinel",
+                category: "Spinel",
+                cert: "AGCL",
+                local_image: "B_Spl_1.56.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "B-Spl-1.59",
+                title: "1.59 ct Natural Untreated Blue Spinel",
+                category: "Spinel",
+                cert: "",
+                local_image: "B_Spl_1.59.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "B-Spl-1.88",
+                title: "1.88 ct Natural Untreated Blue Spinel",
+                category: "Spinel",
+                cert: "",
+                local_image: "B_Spl_1.88.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "G-Spl-1.35",
+                title: "1.35 ct Natural Untreated Green Spinel (Burma)",
+                category: "Spinel",
+                cert: "EGL",
+                local_image: "G_Spl_1.35.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            {
+                id: "Gr-Spl-1.76",
+                title: "1.76 ct Natural Untreated Gray Spinel",
+                category: "Spinel",
+                cert: "PGTL",
+                local_image: "Gr_Spl_1.76.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            {
+                id: "O-Spl-5.17",
+                title: "5.17 ct Natural Untreated Orange Spinel",
+                category: "Spinel",
+                cert: "",
+                local_image: "O_Spl_5.17.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            {
+                id: "P-Spl-3.61",
+                title: "3.61 ct Natural Untreated Pink Spinel",
+                category: "Spinel",
+                cert: "",
+                local_image: "P_Spl_3.61.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            {
+                id: "Pu-Spl-2.54",
+                title: "2.54 ct Natural Untreated Purple Spinel",
+                category: "Spinel",
+                cert: "PGTL",
+                local_image: "Pu_Spl_2.54.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            {
+                id: "R-Spl-0.59",
+                title: "0.59 ct Natural Untreated Red Spinel (Burma)",
+                category: "Spinel",
+                cert: "EGL",
+                local_image: "R_Spl_0.59.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            {
+                id: "R-Spl-2.01",
+                title: "2.01 Natural Untreated Red Spinel (Burma)",
+                category: "Spinel",
+                cert: "",
+                local_image: "R_Spl_2.01.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+
+            // ─────────── ZIRCON ───────────
+            {
+                id: "WZir_12.77",
+                title: "12.77 ct Natural Unheated White Zircon",
+                category: "Zircon",
+                cert: "",
+                local_image: "WZir_12.77.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Ozir_13.84",
+                title: "13.84 ct Natural Unheated Orange Zircon",
+                category: "Zircon",
+                cert: "",
+                local_image: "Ozir_13.84.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+            // ─────────── SEMI PRECIOUS ───────────
+
+            {
+                id: "Kun-8.30",
+                title: "8.30 ct Natural Untreated Pink Kunzite",
+                category: "Semi Precious",
+                cert: "{GTL}",
+                local_image: "Kun_8.30.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "F-Opal-2.58",
+                title: "2.58 ct Natural Untreated Fire Opal",
+                category: "Semi Precious",
+                cert: "",
+                local_image: "F_Opal_2.58.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Opal-4.67",
+                title: "4.67 ct Natural Untreated White Opal",
+                category: "Semi Precious",
+                cert: "",
+                local_image: "Opal_4.67.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+            {
+                id: "Qartz-21.56",
+                title: "21.56 ct Natural Untreated Yellow Quartz",
+                category: "Semi Precious",
+                cert: "",
+                local_image: "Qartz_21.56.jpg",
+                image_id: "",
+                drive_link: "",
+                video_link: ""
+            },
+
+
+
+            /*
+             ================================================================
+             ADD MORE STONES HERE — just copy and paste one of the blocks above
+             and fill in the details. Remember to put a comma after each block.
+             ================================================================
+            */
+
+        ];
+
+        // ============================================================
+        //  CATALOG ENGINE — no need to edit below this line
+        // ============================================================
+
+        const PAGE_SIZE = 24;
+        let currentCategory = "All";
+        let displayedCount = 0;
+        let filteredStones = [];
+
+        const grid = document.getElementById('gemGrid');
+        const spinner = document.getElementById('spinner');
+        const resultsInfo = document.getElementById('resultsInfo');
+        const modal = document.getElementById('inquiryModal');
+        const modalImg = document.getElementById('modalImg');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMeta = document.getElementById('modalMeta');
+        const modalContact = document.getElementById('modalContactBtn');
+        const modalDrive = document.getElementById('modalDriveBtn');
+        const modalVideo = document.getElementById('modalVideoBtn');
+
+        // Get image — local file takes priority, then Google Drive, then placeholder
+        function getImageSrc(stone) {
+            if (stone.local_image) return 'images/' + stone.local_image;
+            if (stone.image_id) return 'https://drive.google.com/thumbnail?id=' + stone.image_id + '&sz=w400';
+            return 'images/gem-cutting-placeholder.png';
+        }
+
+        function applyFilter() {
+            filteredStones = allStones.filter(s =>
+                currentCategory === "All" || s.category === currentCategory
+            );
+            displayedCount = 0;
+            grid.innerHTML = '';
+            renderNextBatch();
+            updateResultsInfo();
+        }
+
+        function updateResultsInfo() {
+            const total = filteredStones.length;
+            resultsInfo.textContent = total === 0
+                ? ''
+                : `Showing ${Math.min(displayedCount, total)} of ${total} stones`;
+        }
+
+        function renderNextBatch() {
+            if (displayedCount >= filteredStones.length) {
+                spinner.classList.remove('visible');
+                if (filteredStones.length === 0) {
+                    grid.innerHTML = `<div class="no-results"><i class="fas fa-gem"></i><p>No stones found in this category.</p></div>`;
+                }
+                updateResultsInfo();
+                return;
+            }
+
+            const batch = filteredStones.slice(displayedCount, displayedCount + PAGE_SIZE);
+            displayedCount += batch.length;
+
+            batch.forEach(stone => {
+                const imgSrc = getImageSrc(stone);
+                const certHTML = stone.cert ? `<span class="cert-badge">${stone.cert}</span>` : '';
+                const card = document.createElement('div');
+                card.className = 'gem-card';
+                card.innerHTML = `
+                    <div class="gem-card-img-wrap">
+                        <div class="img-placeholder" id="ph-${stone.id}"></div>
+                        ${certHTML}
+                        <img class="lazy" data-src="${imgSrc}" alt="${stone.title}" id="img-${stone.id}">
+                    </div>
+                    <div class="gem-card-info">
+                        <div class="gem-card-title">${stone.title}</div>
+                        <div class="gem-card-meta">${stone.category}</div>
+                        <div class="gem-card-action"><i class="fas fa-search-plus"></i> View Details</div>
+                    </div>
+                `;
+                card.addEventListener('click', () => openModal(stone));
+                grid.appendChild(card);
+            });
+
+            lazyLoadNewImages();
+            updateResultsInfo();
+        }
+
+        const imgObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    const hideLoader = () => {
+                        img.classList.add('loaded');
+                        const ph = document.getElementById('ph-' + img.id.replace('img-', ''));
+                        if (ph) ph.style.display = 'none';
+                    };
+                    img.onload = hideLoader;
+                    img.onerror = () => { img.src = 'images/gem-cutting-placeholder.png'; hideLoader(); };
+                    imgObserver.unobserve(img);
+                }
+            });
+        }, { rootMargin: '300px' });
+
+        function lazyLoadNewImages() {
+            document.querySelectorAll('img.lazy:not([src])').forEach(img => imgObserver.observe(img));
+        }
+
+        const scrollObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && displayedCount < filteredStones.length) {
+                spinner.classList.add('visible');
+                setTimeout(() => { renderNextBatch(); spinner.classList.remove('visible'); }, 300);
+            }
+        }, { rootMargin: '300px' });
+
+        scrollObserver.observe(document.getElementById('load-sentinel'));
+
+        function openModal(stone) {
+            modalTitle.textContent = stone.title;
+            modalMeta.textContent = stone.category + (stone.cert ? ' · ' + stone.cert + ' Certified' : '');
+            modalImg.src = getImageSrc(stone);
+
+            // Inquire button — always shown, passes stone name to contact page
+            modalContact.href = `contact.html?stone=${encodeURIComponent(stone.title)}`;
+
+            // Drive button — always visible; greyed out if no link yet
+            if (stone.drive_link) {
+                modalDrive.href = stone.drive_link;
+                modalDrive.style.opacity = '1';
+                modalDrive.style.pointerEvents = 'auto';
+                modalDrive.title = '';
+            } else {
+                modalDrive.href = '#';
+                modalDrive.style.opacity = '0.4';
+                modalDrive.style.pointerEvents = 'none';
+                modalDrive.title = 'Coming soon';
+            }
+
+            // Video button — always visible; greyed out if no link yet
+            if (stone.video_link) {
+                modalVideo.href = stone.video_link;
+                modalVideo.style.opacity = '1';
+                modalVideo.style.pointerEvents = 'auto';
+                modalVideo.title = '';
+            } else {
+                modalVideo.href = '#';
+                modalVideo.style.opacity = '0.4';
+                modalVideo.style.pointerEvents = 'none';
+                modalVideo.title = 'Coming soon';
+            }
+
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        document.getElementById('modalClose').addEventListener('click', closeModal);
+        modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+        function closeModal() {
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('categoryBar').addEventListener('click', e => {
+            const btn = e.target.closest('.cat-btn');
+            if (!btn) return;
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentCategory = btn.dataset.cat;
+            applyFilter();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Mobile menu
+        const mobileBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
+        if (mobileBtn) mobileBtn.addEventListener('click', () => navMenu.classList.toggle('active'));
+
+        applyFilter();
+    </script>
+</body>
+
+</html>
