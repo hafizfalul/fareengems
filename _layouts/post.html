@@ -2,26 +2,30 @@
 layout: default
 ---
 
-<section class="blog-section">
-  <a href="/blog.html" class="back-to-blog">← Back to Blog</a>
+<div class="post-wrapper">
+    <a href="/blog.html" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
 
-  <div class="post-header">
-    <p class="post-meta">{{ page.date | date: "%B %d, %Y" }} &nbsp;·&nbsp; {{ page.category }}</p>
-    <h1>{{ page.title }}</h1>
-  </div>
+    <div class="post-header">
+        <p class="post-meta">
+            <span class="post-category">{{ page.category }}</span>
+            &nbsp;·&nbsp;
+            {{ page.date | date: "%B %d, %Y" }}
+        </p>
+        <h1>{{ page.title }}</h1>
+    </div>
 
-  {% if page.image %}
-  <img src="{{ page.image }}" alt="{{ page.title }}" style="width:100%; border-radius:10px; margin-bottom:32px; max-height:420px; object-fit:cover;" />
-  {% endif %}
+    {% if page.image %}
+    <img class="post-cover" src="{{ page.image }}" alt="{{ page.title }}" />
+    {% endif %}
 
-  <div class="post-content">
-    {{ content }}
-  </div>
+    <div class="post-content">
+        {{ content }}
+    </div>
 
-  <div class="share-bar">
-    Share this post:
-    <a href="https://wa.me/?text={{ page.title | url_encode }}%20{{ site.url }}{{ page.url | url_encode }}" target="_blank">WhatsApp</a>
-    <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url | url_encode }}" target="_blank">Facebook</a>
-    <a href="https://www.instagram.com/fareengems/" target="_blank">Instagram</a>
-  </div>
-</section>
+    <div class="share-bar">
+        <span>Share:</span>
+        <a href="https://wa.me/?text={{ page.title | url_encode }}%20https://fareengems.com{{ page.url | url_encode }}" target="_blank" aria-label="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://fareengems.com{{ page.url | url_encode }}" target="_blank" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/fareengems/" target="_blank" aria-label="Follow on Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+</div>

@@ -5,29 +5,41 @@ description: Gemstone insights, education, and new arrivals from Fareen Gems.
 permalink: /blog.html
 ---
 
-<section class="blog-section">
-  <h1>Gemstone Insights</h1>
-  <p class="section-subtitle">Education, new arrivals, and stories from the world of natural gemstones.</p>
+<!-- Page Header -->
+<div class="blog-page-header">
+    <h1>Gemstone Insights</h1>
+    <p>Education &nbsp;·&nbsp; New Arrivals &nbsp;·&nbsp; Stories from Sri Lanka</p>
+</div>
 
-  <div class="post-grid">
-    {% for post in site.posts %}
-    <div class="post-card">
-      {% if post.image %}
-      <img src="{{ post.image }}" alt="{{ post.title }}" loading="lazy" />
-      {% else %}
-      <img src="/images/logo.jpg" alt="Fareen Gems" style="object-fit:contain; background:#f5f0e8; padding:20px;" />
-      {% endif %}
-      <div class="post-card-body">
-        <p class="post-meta">{{ post.date | date: "%B %d, %Y" }} &nbsp;·&nbsp; {{ post.category }}</p>
-        <h2>{{ post.title }}</h2>
-        <p>{{ post.excerpt | strip_html | truncatewords: 22 }}</p>
-        <a href="{{ post.url }}" class="btn-read-more">Read More</a>
-      </div>
+<!-- Posts -->
+<div class="blog-container">
+    {% if site.posts.size > 0 %}
+    <div class="post-grid">
+        {% for post in site.posts %}
+        <div class="post-card">
+            {% if post.image %}
+            <img class="post-card-img" src="{{ post.image }}" alt="{{ post.title }}" loading="lazy" />
+            {% else %}
+            <div class="post-card-img-placeholder">
+                <img src="/images/logo.jpg" alt="Fareen Gems" />
+            </div>
+            {% endif %}
+            <div class="post-card-body">
+                <p class="post-meta">
+                    <span class="post-category">{{ post.category }}</span>
+                    &nbsp;·&nbsp; {{ post.date | date: "%B %d, %Y" }}
+                </p>
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.excerpt | strip_html | truncatewords: 24 }}</p>
+                <a href="{{ post.url }}" class="btn-read-more">Read More</a>
+            </div>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-
-    {% if site.posts.size == 0 %}
-    <p style="color:#888;">No posts yet — check back soon!</p>
+    {% else %}
+    <div class="no-posts">
+        <i class="fas fa-gem"></i>
+        <p>No posts yet — check back soon!</p>
+    </div>
     {% endif %}
-  </div>
-</section>
+</div>
