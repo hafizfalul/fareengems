@@ -1,0 +1,12 @@
+title: Fareen Gems
+description: Premium Natural Colored Gemstones
+url: "https://fareengems.com"
+baseurl: ""
+
+# Blog settings
+permalink: /blog/:year/:month/:day/:title/
+
+# Exclude files Jekyll shouldn't process
+exclude:
+  - node_modules
+  - README.md

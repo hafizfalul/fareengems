@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ page.title }} | Fareen Gems</title>
+  <meta name="description" content="{{ page.description | default: site.description }}" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <!-- Blog-specific styles -->
+  <style>
+    /* ── Blog Layout ── */
+    .blog-section {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 24px;
+    }
+    .blog-section h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+      color: var(--primary-color, #1a1a2e);
+    }
+    .blog-section .section-subtitle {
+      color: #666;
+      margin-bottom: 40px;
+      font-size: 1rem;
+    }
+
+    /* ── Post Cards (blog index) ── */
+    .post-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 28px;
+    }
+    .post-card {
+      background: #fff;
+      border: 1px solid #e8e0d4;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: box-shadow 0.25s;
+    }
+    .post-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.10); }
+    .post-card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+    }
+    .post-card-body { padding: 20px; }
+    .post-meta {
+      font-size: 0.78rem;
+      color: #999;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .post-card-body h2 {
+      font-size: 1.1rem;
+      margin: 0 0 10px;
+      color: #1a1a2e;
+    }
+    .post-card-body p {
+      font-size: 0.92rem;
+      color: #555;
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+    .btn-read-more {
+      display: inline-block;
+      padding: 8px 20px;
+      background: #c9a84c;
+      color: #fff;
+      border-radius: 5px;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-read-more:hover { background: #a8842d; }
+
+    /* ── Single Post ── */
+    .post-header { margin-bottom: 32px; }
+    .post-header h1 { font-size: 2rem; margin-bottom: 8px; }
+    .post-header .post-meta { font-size: 0.85rem; }
+    .post-content { line-height: 1.8; color: #333; }
+    .post-content h2 { margin-top: 36px; margin-bottom: 12px; color: #1a1a2e; }
+    .post-content h3 { margin-top: 28px; margin-bottom: 10px; color: #1a1a2e; }
+    .post-content img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    .post-content p { margin-bottom: 18px; }
+    .post-content ul, .post-content ol {
+      padding-left: 24px;
+      margin-bottom: 18px;
+    }
+    .back-to-blog {
+      display: inline-block;
+      margin-bottom: 28px;
+      color: #c9a84c;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .back-to-blog:hover { text-decoration: underline; }
+
+    /* ── Share bar ── */
+    .share-bar {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid #e8e0d4;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .share-bar a {
+      display: inline-block;
+      margin-left: 10px;
+      color: #c9a84c;
+      text-decoration: none;
+    }
+    .share-bar a:hover { text-decoration: underline; }
+  </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3RDTRQKQVB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3RDTRQKQVB');
+  </script>
+</head>
+<body>
+
+  <!-- ── HEADER (matches your existing site) ── -->
+  <header class="header">
+    <nav class="navbar">
+      <a href="/index.html" class="nav-logo">
+        <img src="/images/logo.jpg" alt="Fareen Gems Logo" />
+        FareenGems
+      </a>
+      <ul class="nav-menu">
+        <li><a href="/index.html" class="nav-link">Home</a></li>
+        <li><a href="/about.html" class="nav-link">About Us</a></li>
+        <li><a href="/catalog.html" class="nav-link">Catalog</a></li>
+        <li><a href="/blog.html" class="nav-link">Blog</a></li>
+        <li><a href="/contact.html" class="nav-link">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ── PAGE CONTENT ── -->
+  <main>
+    {{ content }}
+  </main>
+
+  <!-- ── FOOTER (matches your existing site) ── -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section footer-brand">
+        <a href="/index.html" class="footer-logo">Fareen Gems</a>
+        <p>Premium natural colored gemstones specializing in Alexandrite, Sapphires, Rubies, and rare collection stones designed for traders, collectors, and jewelers.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/about.html">About Us</a></li>
+          <li><a href="/catalog.html">Catalog</a></li>
+          <li><a href="/blog.html">Blog</a></li>
+          <li><a href="/contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <p>+ 94 777 890 800</p>
+        <p>+ 94 727 890 800</p>
+        <p>29/2 Samagi Mawatha, Kawdana Road Dehiwala.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Connect With Us</h4>
+        <p>Follow us for the latest arrivals and gemstone market insights.</p>
+        <div class="footer-social">
+          <a href="https://www.youtube.com/@fareengems" target="_blank">YouTube</a>
+          <a href="https://www.instagram.com/fareengems/" target="_blank">Instagram</a>
+          <a href="https://www.tiktok.com/@fareengems" target="_blank">TikTok</a>
+          <a href="https://web.facebook.com/fareengems" target="_blank">Facebook</a>
+          <a href="https://wa.me/94727890800" target="_blank">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© Fareen Gems. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
